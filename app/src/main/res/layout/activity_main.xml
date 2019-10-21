@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".MainActivity">
+
+    <com.like.LikeButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:icon_size="25dp"
+        app:icon_type="heart"
+        app:like_drawable="@drawable/thumb_on"
+        app:unlike_drawable="@drawable/thumb_off"
+        tools:layout_editor_absoluteX="295dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+
+    <com.like.LikeButton
+        android:id="@+id/star_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:icon_size="25dp"
+        app:icon_type="Star" />
+
+</LinearLayout>

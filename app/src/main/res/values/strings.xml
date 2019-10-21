@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CheapTravel</string>
+    <string name="like_group_post">Thích</string>
+    <string name="comment_group_post">Bình luận</string>
+</resources>
