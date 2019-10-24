@@ -38,6 +38,7 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
 
     implementation 'com.github.jd-alexander:LikeButton:0.2.3'
+    implementation 'com.google.firebase:firebase-auth:19.1.0'
 
 
 }

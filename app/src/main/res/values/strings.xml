@@ -18,4 +18,6 @@
     <string name="login_failed">"Login failed"</string>
     <string name="signUp_fullname">Full name</string>
     <string name="all_email">Email</string>
+    <string name="edt_newpost">Nhập nội dung...</string>
+    <string name="btn_post">Đăng</string>
 </resources>
