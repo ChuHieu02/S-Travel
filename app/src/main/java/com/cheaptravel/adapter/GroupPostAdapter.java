@@ -1,7 +1,6 @@
 package com.cheaptravel.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.cheaptravel.R;
 import com.cheaptravel.interfaces.GetKeyPost;
-import com.cheaptravel.model.Like;
 import com.cheaptravel.model.Post;
-import com.cheaptravel.ulti.Costant;
+import com.cheaptravel.ulti.Constants;
 import com.like.LikeButton;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.List;
-import java.util.logging.Handler;
 
 public class GroupPostAdapter extends RecyclerView.Adapter<GroupPostAdapter.ViewHolder> {
     private static final String TAG = "Adapter post";
@@ -64,7 +60,7 @@ public class GroupPostAdapter extends RecyclerView.Adapter<GroupPostAdapter.View
             holder.totalLikePost.setText(groupPost.getTotalLike());
         }
         if (groupPost.getTotaComment() != null) {
-            holder.totalCommentPost.setText(groupPost.getTotaComment() + Costant.KEY_COMMENT);
+            holder.totalCommentPost.setText(groupPost.getTotaComment() + Constants.KEY_COMMENT);
         }
 
         holder.viewLike.setOnClickListener(new View.OnClickListener() {
@@ -104,9 +100,8 @@ public class GroupPostAdapter extends RecyclerView.Adapter<GroupPostAdapter.View
     }
 
     public void addAll(List<Post> list) {
-        int size = groupPosts.size();
         groupPosts.addAll(list);
-        notifyItemRangeChanged(size, list.size());
+        notifyDataSetChanged();
     }
 
 

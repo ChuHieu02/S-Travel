@@ -1,19 +1,16 @@
 package com.cheaptravel.activity;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.cheaptravel.R;
-import com.cheaptravel.model.Post;
 import com.cheaptravel.model.User;
-import com.cheaptravel.ulti.Costant;
+import com.cheaptravel.ulti.Constants;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +24,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText signupPassword;
     private EditText signupEmail;
     private DatabaseReference mDatabase;
-    private String email, username, password, fullname;
+    public static String email, username, password, fullname;
 
 
     @Override
@@ -51,23 +48,21 @@ public class SignUpActivity extends AppCompatActivity {
         username = signupUsername.getText().toString().trim();
         fullname = signupFullname.getText().toString().trim();
         password = signupPassword.getText().toString().trim();
-        Query queryUsername = FirebaseDatabase.getInstance().getReference(Costant.KEY_USER).orderByChild(Costant.KEY_USERNAME).equalTo(username);
+        Query queryUsername = FirebaseDatabase.getInstance().getReference(Constants.KEY_USER).orderByChild(Constants.KEY_USERNAME).equalTo(username);
         queryUsername.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (!dataSnapshot.exists()) {
                     User user = new User(username, password, email, fullname);
-                    DatabaseReference createUser = FirebaseDatabase.getInstance().getReference(Costant.KEY_USER);
-                    createUser.push().setValue(user, new DatabaseReference.CompletionListener() {
-
-                        @Override
-                        public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
-                            showToas("Tạo tài khoản thành công");
-                        }
+                    DatabaseReference createUser = FirebaseDatabase.getInstance().getReference(Constants.KEY_USER);
+                    createUser.push().setValue(user, (databaseError, databaseReference) -> {
+                        showToas("Tạo tài khoản thành công");
+                        onBackPressed();
                     });
-                    return;
-                }
+
+                }else {
                     showToas("Tài khoản đã tồn tại");
+                }
             }
 
             @Override
@@ -78,21 +73,15 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
-    private void checkUser() {
-        Query queryEmail = FirebaseDatabase.getInstance().getReference(Costant.KEY_USER).orderByChild(Costant.KEY_EMAIL).equalTo(email);
+    private void checkEmail() {
+        Query queryEmail = FirebaseDatabase.getInstance().getReference(Constants.KEY_USER).orderByChild(Constants.KEY_EMAIL).equalTo(email);
         queryEmail.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (!dataSnapshot.exists()) {
                     User user = new User(username, password, email, fullname);
-                    DatabaseReference createUser = FirebaseDatabase.getInstance().getReference(Costant.KEY_USER);
-                    createUser.push().setValue(user, new DatabaseReference.CompletionListener() {
-
-                        @Override
-                        public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
-                            showToas("Tạo tài khoản thành công");
-                        }
-                    });
+                    DatabaseReference createUser = FirebaseDatabase.getInstance().getReference(Constants.KEY_USER);
+                    createUser.push().setValue(user, (databaseError, databaseReference) -> showToas("Tạo tài khoản thành công"));
                 } else {
                     showToas("Email đã tồn tại");
                 }

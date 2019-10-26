@@ -1,6 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_fr_group_post"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_home_newpost" />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp50"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:fontFamily="@font/utmalba"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/red_active"
+        app:layout_constraintBottom_toBottomOf="@+id/et_home_newpost"
+        app:layout_constraintEnd_toStartOf="@+id/et_home_newpost"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/et_home_newpost" />
+
+    <TextView
+        android:id="@+id/et_home_newpost"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp40"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/bg_edt_home_newpost"
+        android:ems="10"
+        android:gravity="center_vertical"
+        android:hint="@string/btn_home_newpost"
+        android:inputType="textPersonName"
+        android:maxLines="1"
+        android:paddingLeft="@dimen/dp16"
+        app:layout_constraintBottom_toBottomOf="@+id/avatar_home"
+        app:layout_constraintEnd_toStartOf="@+id/avatar_home"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="@+id/avatar_home" />
+
+    <ImageView
+        android:id="@+id/avatar_home"
+        android:layout_width="@dimen/dp50"
+        android:layout_height="@dimen/dp50"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/et_home_newpost"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/user_profile" />
+</androidx.constraintlayout.widget.ConstraintLayout>

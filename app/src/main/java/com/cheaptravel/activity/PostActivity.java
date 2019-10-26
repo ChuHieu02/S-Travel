@@ -6,17 +6,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.LinearLayout;
 
 import com.cheaptravel.R;
 import com.cheaptravel.adapter.GroupPostAdapter;
-import com.cheaptravel.interfaces.GetKeyPost;
 import com.cheaptravel.model.Comment;
 import com.cheaptravel.model.Like;
 import com.cheaptravel.model.Post;
-import com.cheaptravel.ulti.Costant;
+import com.cheaptravel.ulti.Constants;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -50,21 +46,18 @@ public class PostActivity extends AppCompatActivity {
         groupPostAdapter = new GroupPostAdapter(this, postArrayList);
         recyclerView.setAdapter(groupPostAdapter);
 
-        groupPostAdapter.setGetKeyPost(new GetKeyPost() {
-            @Override
-            public void getKey(String key, int position , boolean b) {
-                mDatabase = FirebaseDatabase.getInstance().getReference("Post").child(key).child("Like");
-                if (b){
-                    Like like = new Like("1");
-                    mDatabase.child(Costant.KEY_ID_USER_DEFAULT).setValue(like);
-                    groupPostAdapter.notifyItemChanged(position);
-                    return;
-                }
-                Like like = new Like("0");
-                mDatabase.child(Costant.KEY_ID_USER_DEFAULT).setValue(like);
+        groupPostAdapter.setGetKeyPost((key, position, b) -> {
+            mDatabase = FirebaseDatabase.getInstance().getReference("Post").child(key).child("Like");
+            if (b){
+                Like like = new Like("1");
+                mDatabase.child(Constants.KEY_ID_USER_DEFAULT).setValue(like);
                 groupPostAdapter.notifyItemChanged(position);
-
+                return;
             }
+            Like like = new Like("0");
+            mDatabase.child(Constants.KEY_ID_USER_DEFAULT).setValue(like);
+            groupPostAdapter.notifyItemChanged(position);
+
         });
 
         mDatabase = FirebaseDatabase.getInstance().getReference("Post");
@@ -85,9 +78,8 @@ public class PostActivity extends AppCompatActivity {
                     postArrayList.add(post);
                     getTotalLike(post, snapshot);
                     getTotalComment(post, snapshot);
-
                 }
-                groupPostAdapter.notifyDataSetChanged();
+
             }
         }
 
@@ -109,7 +101,7 @@ public class PostActivity extends AppCompatActivity {
                         likes.add(like);
                     }
                     post.setTotalLike(String.valueOf(likes.size()));
-                    groupPostAdapter.notifyDataSetChanged();
+
 
                 }
             }

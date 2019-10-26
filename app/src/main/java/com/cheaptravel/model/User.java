@@ -15,6 +15,9 @@ public class User {
         this.fullName = fullName;
     }
 
+    public User() {
+    }
+
     public String getUsername() {
         return username;
     }

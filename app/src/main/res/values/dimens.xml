@@ -6,5 +6,14 @@
     <dimen name="dp40">40dp</dimen>
     <dimen name="dp10">10dp</dimen>
     <dimen name="sp20">20sp</dimen>
+    <dimen name="dp20">20dp</dimen>
+    <dimen name="dp25">25dp</dimen>
+    <dimen name="sp17">17sp</dimen>
+    <dimen name="dp50">50dp</dimen>
+    <dimen name="sp35">35sp</dimen>
+    <dimen name="sp45">45sp</dimen>
+    <dimen name="dp100">100dp</dimen>
+    <dimen name="dp120">120dp</dimen>
+    <dimen name="dp90">90dp</dimen>
 
 </resources>

@@ -7,16 +7,15 @@
     tools:context=".activity.NewPostActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_marginRight="@dimen/dp16"
-        android:layout_marginBottom="@dimen/dp16"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dp16"
+        android:layout_marginBottom="@dimen/dp16"
         android:clickable="true"
         android:src="@drawable/ic_add_black_24dp"
-       />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:id="@+id/avatar_user"
@@ -45,19 +44,20 @@
         app:layout_constraintTop_toTopOf="@+id/avatar_user" />
 
     <TextView
-        android:textSize="@dimen/sp20"
-        android:textColor="@color/colorAccent"
         android:id="@+id/btn_new_post"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/dp40"
+        android:layout_width="@dimen/dp50"
+        android:layout_height="@dimen/dp50"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="1"
         android:text="@string/btn_post"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/sp20"
+        app:layout_constraintBottom_toBottomOf="@+id/avatar_user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/avatar_user" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -82,9 +82,9 @@
             android:ellipsize="end"
             android:ems="10"
             android:gravity="start"
+            android:hint="@string/edt_newpost"
             android:inputType="textMultiLine"
             android:padding="@dimen/dp10"
-            android:hint="@string/edt_newpost"
             app:layout_constraintBottom_toTopOf="@+id/rv_choose_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

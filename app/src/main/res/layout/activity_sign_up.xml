@@ -49,7 +49,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:hint="@string/login_password"
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,6 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/signup_username" />
 
     <EditText
+        android:inputType="textEmailAddress"
         android:id="@+id/signup_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -72,6 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/signup_password" />
 
     <Button
+        style="@style/button_signup"
         android:onClick="SignUp"
         android:id="@+id/button"
         android:layout_width="0dp"
@@ -81,8 +83,8 @@
         android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="Sing Up"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_email" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,11 +2,11 @@
     <string name="app_name">CheapTravel</string>
     <string name="like_group_post">Thích</string>
     <string name="comment_group_post">Bình luận</string>
-    <string name="login_username">User name</string>
-    <string name="login_password">Password</string>
-    <string name="btn_login">Login</string>
-    <string name="btn_signUp">Sign Up</string>
-    <string name="login_remember">Remember password</string>
+    <string name="login_username">Tài khoản</string>
+    <string name="login_password">Mật khẩu</string>
+    <string name="btn_login">Đăng nhập</string>
+    <string name="btn_signUp">Đăng kí</string>
+    <string name="login_remember">Nhớ mật khẩu</string>
     <string name="title_activity_sign_up">Sign in</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -16,8 +16,28 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="signUp_fullname">Full name</string>
+    <string name="signUp_fullname">Họ &amp; Tên</string>
     <string name="all_email">Email</string>
     <string name="edt_newpost">Nhập nội dung...</string>
     <string name="btn_post">Đăng</string>
+    <string name="notify_user_is_not_exists">Tài khoản không tồn tại</string>
+    <string name="login_success">Đăng nhập thành công</string>
+    <string name="login_failed_password">Mật khẩu không đúng</string>
+    <string name="home">Home</string>
+    <string name="user">User</string>
+    <string name="place">Places</string>
+    <string name="slogan_cheaptravel">Cuộc sống là một cuộc phiêu lưu đầy táo bạo hoặc không là gì cả.</string>
+    <string name="user_share">Chia sẻ</string>
+    <string name="user_report">Góp ý</string>
+    <string name="user_logout">Đăng xuất</string>
+    <string name="user_setting">Cài đặt</string>
+    <string name="loading">Loading...</string>
+    <string name="update_avatar_user_success">Đã cập nhật ảnh đại diện</string>
+    <string name="dialog_rename">Nhập tên bạn muốn đổi.</string>
+    <string name="dialog_yes">Đồng ý</string>
+    <string name="dialog_no">Hủy bỏ</string>
+    <string name="btn_home_newpost">Bạn đang nghĩ gì ?</string>
+    <string name="Press_back_to_exit">Chạm lần nữa để thoát</string>
+
+
 </resources>

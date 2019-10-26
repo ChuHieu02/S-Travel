@@ -8,7 +8,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:918576600924:android:9615ccf019bc593d1a5399",
+        "mobilesdk_app_id": "1:918576600924:android:3e589486bccb766d1a5399",
         "android_client_info": {
           "package_name": "com.cheaptravel"
         }
@@ -22,6 +22,35 @@
             "certificate_hash": "fa9bb254efa6ac7d9394c328519180d40a67f0cf"
           }
         },
+        {
+          "client_id": "918576600924-ck6recesfan70g5jkaclrhn870ftica0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyj0cXMdY2uWr-X6Jk7jduu7TggJ9Q6X4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "918576600924-ck6recesfan70g5jkaclrhn870ftica0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918576600924:android:83f12f65192202bc1a5399",
+        "android_client_info": {
+          "package_name": "com.cheaptravel.activity"
+        }
+      },
+      "oauth_client": [
         {
           "client_id": "918576600924-ck6recesfan70g5jkaclrhn870ftica0.apps.googleusercontent.com",
           "client_type": 3
