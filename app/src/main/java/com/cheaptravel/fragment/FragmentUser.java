@@ -267,13 +267,30 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
 
             }
         });
-        builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                startActivity(new Intent(getContext(), LoginActivity.class));
-            }
-        });
+        builder.setPositiveButton("Có", (dialog, which) -> listener.logOut());
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     };
+
+    private FragmentUserLogout listener;
+    public interface FragmentUserLogout {
+        void logOut();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        listener = null;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof FragmentUserLogout) {
+            listener = (FragmentUserLogout) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement FragmentDetailListListener");
+        }
+    }
 }

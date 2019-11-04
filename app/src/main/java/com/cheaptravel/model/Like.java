@@ -5,7 +5,6 @@ public class Like {
 
     public Like() {
     }
-
     public Like(String value) {
         this.value = value;
     }

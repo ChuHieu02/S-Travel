@@ -17,6 +17,7 @@ import com.cheaptravel.R;
 import com.cheaptravel.interfaces.GetKeyPost;
 import com.cheaptravel.model.Post;
 import com.cheaptravel.ulti.Constants;
+import com.cheaptravel.ulti.Ulti;
 import com.like.LikeButton;
 
 import java.util.ArrayList;
@@ -51,31 +52,32 @@ public class GroupPostAdapter extends RecyclerView.Adapter<GroupPostAdapter.View
 
         holder.content.setText(groupPost.getContent());
         holder.name.setText(groupPost.getNameUser());
-        holder.date.setText(groupPost.getDate());
-        holder.location.setText(groupPost.getLocation());
+        if (groupPost.getDate() != null) {
+            holder.date.setText(Ulti.TimeAgo.getTimeAgo(Long.parseLong(groupPost.getDate())));
+        }
+       if (groupPost.getLocation()!=null){
+           holder.location.setText( groupPost.getLocation());
+       }
         Glide.with(context).load(groupPost.getAvatarUser()).circleCrop().placeholder(R.drawable.ic_no_image).into(holder.avatar);
 
 //        Log.e(TAG, groupPost.getTotalLike() + "");
-        if (groupPost.getTotalLike()!=null){
+        if (groupPost.getTotalLike() == null) {
             holder.totalLikePost.setText(groupPost.getTotalLike());
         }
         if (groupPost.getTotaComment() != null) {
             holder.totalCommentPost.setText(groupPost.getTotaComment() + Constants.KEY_COMMENT);
         }
 
-        holder.viewLike.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        holder.viewLike.setOnClickListener(view -> {
 
-                if (holder.acLike.isLiked()){
-                    holder.acLike.setLiked(false);
-                    getKeyPost.getKey(groupPost.getIdPost(), position,holder.acLike.isLiked());
-                }else {
-                    holder.acLike.setLiked(true);
-                    getKeyPost.getKey(groupPost.getIdPost(), position,holder.acLike.isLiked());
-                }
-
+            if (holder.acLike.isLiked()) {
+                holder.acLike.setLiked(false);
+                getKeyPost.getKey(groupPost.getIdPost(), position, holder.acLike.isLiked());
+            } else {
+                holder.acLike.setLiked(true);
+                getKeyPost.getKey(groupPost.getIdPost(), position, holder.acLike.isLiked());
             }
+
         });
         holder.viewCommentPost.setOnClickListener(new View.OnClickListener() {
             @Override

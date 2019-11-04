@@ -38,6 +38,8 @@
     <string name="dialog_no">Hủy bỏ</string>
     <string name="btn_home_newpost">Bạn đang nghĩ gì ?</string>
     <string name="Press_back_to_exit">Chạm lần nữa để thoát</string>
+    <string name="checkin_newpost">Checkin tại</string>
+    <string name="homestay_newpost">Homestay</string>
 
 
 </resources>

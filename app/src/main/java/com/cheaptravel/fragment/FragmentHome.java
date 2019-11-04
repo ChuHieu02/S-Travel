@@ -35,12 +35,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentHome extends Fragment implements View.OnClickListener {
-    private String TAG = "PostFrag";
+    private String TAG = "FragHome";
 
     private DatabaseReference mDatabase;
     private GroupPostAdapter groupPostAdapter;
@@ -61,6 +63,7 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
         setAdapter(postArrayList);
         new getPosts().execute();
         new getUser().execute();
+
         return view;
     }
 
@@ -78,7 +81,6 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
         etHomeNewpost = view.findViewById(R.id.et_home_newpost);
         avatarHome = (ImageView) view.findViewById(R.id.avatar_home);
         recyclerView = view.findViewById(R.id.rv_fr_group_post);
-
         etHomeNewpost.setOnClickListener(this);
     }
 
@@ -94,7 +96,7 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
     private class getPosts extends AsyncTask<String, String, List<Post>> {
         @Override
         protected List<Post> doInBackground(String... strings) {
-            Query mDatabase = FirebaseDatabase.getInstance().getReference("Post");
+            Query mDatabase = FirebaseDatabase.getInstance().getReference(Constants.KEY_POST);
             mDatabase.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -134,14 +136,32 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
             mDatabase = FirebaseDatabase.getInstance().getReference("Post").child(key).child("Like");
             if (b) {
                 Like like = new Like("1");
-                mDatabase.child(Constants.KEY_ID_USER_DEFAULT).setValue(like);
-                groupPostAdapter.notifyItemChanged(position);
+                mDatabase.child(getKeyUser()).setValue(like);
                 return;
             }
             Like like = new Like("0");
-            mDatabase.child(Constants.KEY_ID_USER_DEFAULT).setValue(like);
-            groupPostAdapter.notifyItemChanged(position);
+            mDatabase.child(getKeyUser()).setValue(like);
 
+            getSingleLike(getKeyUser(),key);
+        });
+
+    }
+
+    private void getSingleLike(String keyUser,String keyPost) {
+        Query updateName = FirebaseDatabase.getInstance().getReference(Constants.KEY_POST).child(keyPost).child("Like").orderByKey().equalTo(keyUser);
+        updateName.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Like like = snapshot.getValue(Like.class);
+                    Log.e(TAG,like.getValue()+"");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
         });
     }
 

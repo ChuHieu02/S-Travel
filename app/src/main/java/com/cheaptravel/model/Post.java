@@ -16,6 +16,7 @@ public class Post {
     private String totalLike;
     private String totaComment;
     private String idUser;
+    private String homestay;
 
     public Post(String avatarUser, String nameUser, String content, String date, String location, List<String> images) {
         this.avatarUser = avatarUser;
@@ -28,6 +29,14 @@ public class Post {
 
 
     public Post(){}
+
+    public String getHomestay() {
+        return homestay;
+    }
+
+    public void setHomestay(String homestay) {
+        this.homestay = homestay;
+    }
 
     public String getTotaComment() {
         return totaComment;

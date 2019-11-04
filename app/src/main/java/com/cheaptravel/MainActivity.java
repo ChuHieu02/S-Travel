@@ -6,11 +6,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.cheaptravel.activity.LoginActivity;
 import com.cheaptravel.adapter.ScreenSlidePagerAdapter;
 import com.cheaptravel.fragment.FragmentHome;
 import com.cheaptravel.fragment.FragmentPlace;
@@ -21,7 +23,7 @@ import com.gauravk.bubblenavigation.listener.BubbleNavigationChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements FragmentUser.FragmentUserLogout{
     private FragmentHome fragmentHome;
     private FragmentPlace fragmentPlace;
     private FragmentUser fragmentUser;
@@ -86,5 +88,11 @@ public class MainActivity extends AppCompatActivity {
             backToast.show();
         }
         backPresstime = System.currentTimeMillis();
+    }
+
+    @Override
+    public void logOut() {
+        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        finish();
     }
 }
