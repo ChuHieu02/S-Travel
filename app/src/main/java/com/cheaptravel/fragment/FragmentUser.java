@@ -18,6 +18,7 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -25,6 +26,7 @@ import android.view.inputmethod.EditorInfo;
 import android.webkit.MimeTypeMap;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -74,9 +76,10 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
     private SharedPreferences sharedPreferences;
     private DatabaseReference mDatabase;
     private StorageReference mStorage;
-    private ImageView editNameUser;
     private AlertDialog dialog;
     private String nameUser;
+
+
 
 
     @Nullable
@@ -156,7 +159,6 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
     }
 
     private void map(View view) {
-        editNameUser = (ImageView) view.findViewById(R.id.edit_name_user);
         profileImageUser = (CircleImageView) view.findViewById(R.id.profile_image_user);
         tvShare = (TextView) view.findViewById(R.id.tv_share);
         tvReport = (TextView) view.findViewById(R.id.tv_report);
@@ -168,8 +170,7 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
         tvReport.setOnClickListener(this);
         tvSetting.setOnClickListener(this);
         tvShare.setOnClickListener(this);
-        profileImageUser.setOnClickListener(this);
-        editNameUser.setOnClickListener(this);
+
     }
 
     @Override
@@ -181,16 +182,32 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
             case R.id.tv_report:
                 break;
             case R.id.tv_setting:
+                PopupMenu popup = new PopupMenu(getContext(), view);
+                popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
+
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        switch(menuItem.getItemId()){
+
+                            case R.id.pp_delete_item_changeAvatar:
+                                openFileChooser();
+                                break;
+
+                            case R.id.pp_share_item_changeName:
+                                renameUser();
+                                break;
+
+                        }
+                        return false;
+                    }
+                });
+                popup.show();
                 break;
             case R.id.tv_logout:
                 logout();
                 break;
-            case R.id.profile_image_user:
-                openFileChooser();
-                break;
-            case R.id.edit_name_user:
-                renameUser();
-                break;
+
         }
     }
 

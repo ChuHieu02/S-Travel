@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/pp_delete_item_changeAvatar"
+        android:title="@string/pp_changeAvatar" />
+    <item
+        android:id="@+id/pp_share_item_changeName"
+        android:title="@string/pp_changeName" />
+</menu>

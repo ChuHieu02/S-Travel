@@ -12,7 +12,9 @@ import android.provider.OpenableColumns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.cheaptravel.MainActivity;
 import com.cheaptravel.R;
 import com.cheaptravel.adapter.UploadListAdapter;
 import com.cheaptravel.model.User;
@@ -127,19 +130,27 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
                 chooseImage();
                 break;
             case R.id.btn_new_post:
-                Intent serviceIntent = new Intent(NewPostActivity.this, ExampleService.class);
-                serviceIntent.putStringArrayListExtra("listNameImage", listNameImage);
-                serviceIntent.putParcelableArrayListExtra("listFileUri", listFileUri);
-                serviceIntent.putStringArrayListExtra("listUriRespon", listUriRespon);
-                serviceIntent.putExtra("keyUser", getKeyUser());
-                serviceIntent.putExtra("content", etEnterContent.getText().toString().trim());
-                serviceIntent.putExtra("location", etLocation.getText().toString().trim());
-                serviceIntent.putExtra("homestay", etNameHomestay.getText().toString().trim());
-                ContextCompat.startForegroundService(NewPostActivity.this, serviceIntent);
-                onBackPressed();
+                if (!etEnterContent.getText().toString().isEmpty() && !etNameHomestay.getText().toString().isEmpty() && !etLocation.getText().toString().isEmpty()) {
+
+                    Intent serviceIntent = new Intent(NewPostActivity.this, ExampleService.class);
+                    serviceIntent.putStringArrayListExtra("listNameImage", listNameImage);
+                    serviceIntent.putParcelableArrayListExtra("listFileUri", listFileUri);
+                    serviceIntent.putStringArrayListExtra("listUriRespon", listUriRespon);
+                    serviceIntent.putExtra("keyUser", getKeyUser());
+                    serviceIntent.putExtra("content", etEnterContent.getText().toString().trim());
+                    serviceIntent.putExtra("location", etLocation.getText().toString().trim());
+                    serviceIntent.putExtra("homestay", etNameHomestay.getText().toString().trim());
+                    ContextCompat.startForegroundService(NewPostActivity.this, serviceIntent);
+                    onBackPressed();
+                }else {
+                    Toast.makeText(this, "Bạn phải điền đủ nội dung", Toast.LENGTH_SHORT).show();
+                }
+
                 break;
+
         }
     }
+
 
     private void chooseImage() {
         Intent intent = new Intent();

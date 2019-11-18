@@ -40,6 +40,8 @@
     <string name="Press_back_to_exit">Chạm lần nữa để thoát</string>
     <string name="checkin_newpost">Checkin tại</string>
     <string name="homestay_newpost">Homestay</string>
+    <string name="pp_changeAvatar">Thay ảnh đại diện</string>
+    <string name="pp_changeName">Đổi tên</string>
 
 
 </resources>

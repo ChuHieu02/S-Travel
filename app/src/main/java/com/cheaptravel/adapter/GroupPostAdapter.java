@@ -55,18 +55,22 @@ public class GroupPostAdapter extends RecyclerView.Adapter<GroupPostAdapter.View
         if (groupPost.getDate() != null) {
             holder.date.setText(Ulti.TimeAgo.getTimeAgo(Long.parseLong(groupPost.getDate())));
         }
-       if (groupPost.getLocation()!=null){
-           holder.location.setText( groupPost.getLocation());
-       }
+        if (groupPost.getLocation() != null) {
+            holder.location.setText(groupPost.getLocation());
+        }
         Glide.with(context).load(groupPost.getAvatarUser()).circleCrop().placeholder(R.drawable.ic_no_image).into(holder.avatar);
 
 //        Log.e(TAG, groupPost.getTotalLike() + "");
-        if (groupPost.getTotalLike() == null) {
-            holder.totalLikePost.setText(groupPost.getTotalLike());
-        }
+
+        holder.totalLikePost.setText(groupPost.getTotalLike());
+
+
+//        holder.totalCommentPost.setText(Constants.KEY_COMMENT);
         if (groupPost.getTotaComment() != null) {
-            holder.totalCommentPost.setText(groupPost.getTotaComment() + Constants.KEY_COMMENT);
+            holder.totalCommentPost.setText(groupPost.getTotaComment()+Constants.KEY_COMMENT);
+
         }
+
 
         holder.viewLike.setOnClickListener(view -> {
 
